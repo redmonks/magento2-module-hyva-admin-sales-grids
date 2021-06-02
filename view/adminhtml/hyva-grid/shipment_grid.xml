@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<grid xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Hyva_Admin:etc/hyva-grid.xsd">
+    <source>
+        <collection>Magento\Sales\Model\ResourceModel\Order\Shipment\Grid\Collection</collection>
+    </source>
+    <columns rowAction="view">
+        <include>
+            <column name="increment_id" label="Shipment"/>
+            <column name="created_at" label="Ship Date" type="datetime"/>
+            <column name="order_increment_id" label="Order #"/>
+            <column name="order_created_at" label="Order Date" type="datetime"/>
+            <column name="shipping_name" label="Ship-to Name"/>
+            <column name="total_qty" label="Total Quantity"/>
+            <column name="order_status" label="Order Status" initiallyHidden="true" source="Magento\Sales\Ui\Component\Listing\Column\Status\Options"/>
+            <column name="store_id" label="Purchase From" initiallyHidden="true" type="store_id" renderAsUnsecureHtml="true"/>
+            <column name="customer_name" label="Customer Name" initiallyHidden="true" />
+            <column name="customer_email" label="Customer Email" initiallyHidden="true" />
+            <column name="customer_group_id" label="Customer Group" initiallyHidden="true"  source="\Magento\Customer\Ui\Component\Listing\Column\Group\Options"/>
+            <column name="billing_address" label="Billing Address" initiallyHidden="true" renderAsUnsecureHtml="true"/>
+            <column name="shipping_address" label="Shipping Address" initiallyHidden="true" renderAsUnsecureHtml="true" />
+            <column name="payment_method" label="Payment Method" initiallyHidden="true" source="\Magento\Payment\Ui\Component\Listing\Column\Method\Options"/>
+            <column name="shipping_information" label="Shipping Information" initiallyHidden="true"/>
+        </include>
+    </columns>
+    <actions idColumn="entity_id">
+        <action id="view" label="View" url="sales/shipment/view" idParam="shipment_id"/>
+    </actions>
+    <massActions idColumn="entity_id" idsParam="selected">
+        <action id="pdfshipments_order" label="PDF Shipments" url="sales/shipment/pdfshipments"/>
+        <action id="print_shipping_label" label="Print Shipping Labels" url="adminhtml/shipment/massPrintShippingLabel"/>
+    </massActions>
+    <navigation>
+        <filters>
+            <filter column="increment_id"/>
+            <filter column="created_at"/>
+            <filter column="order_increment_id"/>
+            <filter column="order_created_at"/>
+            <filter column="shipping_name"/>
+            <filter column="order_status" source="\Magento\Sales\Ui\Component\Listing\Column\Status\Options"/>
+            <filter column="store_id" source="\Magento\Config\Model\Config\Source\Store"/>
+            <filter column="customer_name"/>
+            <filter column="customer_email"/>
+            <filter column="customer_group" source="\Magento\Customer\Ui\Component\Listing\Column\Group\Options"/>
+            <filter column="billing_address"/>
+            <filter column="shipping_address"/>
+            <filter column="payment_method" source="\Magento\Payment\Ui\Component\Listing\Column\Method\Options"/>
+            <filter column="shipping_handling" filterType="\Hyva\Admin\Model\GridFilter\ValueRangeFilter"/>
+        </filters>
+        <sorting>
+            <defaultSortByColumn>created_at</defaultSortByColumn>
+            <defaultSortDirection>desc</defaultSortDirection>
+        </sorting>
+    </navigation>
+</grid>
