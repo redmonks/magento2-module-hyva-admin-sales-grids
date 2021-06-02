@@ -4,6 +4,9 @@
 
 This Magento 2 extension will implement sales grids(order, invoice, shipment, credit memo) using Hyva Admin(https://github.com/hyva-themes/magento2-hyva-admin).
 
+## Motivation
+
+The purpose of writing this implementation is to fill the gap of [hyva-admin](https://github.com/hyva-themes/magento2-hyva-admin) being just a library for grid implementation to actually replacing pre-existing admin grids.
 
 ## Installation
 
